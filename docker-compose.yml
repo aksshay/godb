@@ -1,0 +1,15 @@
+---
+version: '3'
+services:
+  # A RabbitMQ server for testing
+  db:
+    image: mysql-godb:latest
+    volumes:
+      - ./.devel/conf:/conf:z
+      - ./.devel/mysql:/mysql:z
+  # godb
+  godb:
+    image: godb:latest
+    volumes:
+      - ./.devel/conf/.creds/dbdata.yaml:/creds:z
+    entrypoint: /godb
